@@ -274,4 +274,28 @@ Output:
     "result": ""
 }
 
+=============Get Roles===============
+Method :  Get
+URL : http://localhost:7000/admin/getroles
+
+Output
+
+{
+    "code": 200,
+    "message": "Success",
+    "result": [
+        {
+            "roleid": 1,
+            "rolename": "Admin"
+        },
+        {
+            "roleid": 2,
+            "rolename": "Reportuser"
+        },
+        {
+            "roleid": 3,
+            "rolename": "Account"
+        }
+    ]
+}
 

@@ -96,6 +96,16 @@ var Admin =
             logger.error(error);
         }
     },
+    getAllroles: function (user, callback) {
+        try
+        {
+        return db.query("CALL proc_adm_getrole(@o_errcode,@o_errdesc)",
+           
+            callback);
+        } catch ({error}) {
+            logger.error(error);
+        }
+    }
     
 }
 module.exports = Admin;  

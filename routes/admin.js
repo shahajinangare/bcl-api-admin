@@ -280,5 +280,26 @@ router.post('/getmenubyrole', function(req, res, next) {
 
 });
 
+router.get('/getroles', function(req, res, next) {  
+    Admin.getAllroles(req.body, function(err,rows) {  
+
+        try {   
+        if (err) 
+        {  
+           res.json(err);  
+        } else { 
+            console.log(rows);
+                res.status(200).send({
+                code: JSON.parse(JSON.stringify(rows[1]))[0].o_errcode,
+                message: JSON.parse(JSON.stringify(rows[1]))[0].o_errdesc, 
+                result:rows[0]  });
+        }  
+    } catch ({error}) {
+        logger.error(error);
+    }
+    });  
+
+});
+
 
 module.exports = router; 
