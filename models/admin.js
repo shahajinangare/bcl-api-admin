@@ -105,7 +105,19 @@ var Admin =
         } catch ({error}) {
             logger.error(error);
         }
-    }
+    },
+    activeinactiveuser:function(user,callback){
+        return db.query("CALL proc_adm_activeinactiveuser(?,?,?,?,?,?,?,?,@o_errcode,@o_errdesc);",
+        [
+            user.emailid,
+            user.latlong,
+            user.macaddress,
+            user.browser,
+            user.os,
+            user.source,
+            user.createdby,
+            user.createdip],callback);
+    },
     
 }
 module.exports = Admin;  

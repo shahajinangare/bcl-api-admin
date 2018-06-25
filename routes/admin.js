@@ -114,6 +114,48 @@ router.post('/userunlock', function(req, res, next) {
 });
 
 
+router.post('/activeinactiveuser', function(req, res, next) {  
+    Admin.activeinactiveuser(req.body, function(err,rows,outdesc) {  
+        try
+        {
+        if (err) 
+        {   logger.error(err);
+            res.json(err);  
+        } else { 
+           
+            var Code = JSON.parse(JSON.stringify(rows[rows.length-2]))[0].o_errcode;
+           
+            switch(Code)
+                {
+                    case 200:
+                        res.status(200).send({
+                            code:JSON.parse(JSON.stringify(rows[rows.length-2]))[0].o_errcode,
+                            message:JSON.parse(JSON.stringify(rows[rows.length-2]))[0].o_errdesc, 
+                            result:""
+                        })
+                        break;
+                        default:
+                    res.status(200).send({
+                        code: JSON.parse(JSON.stringify(rows[0]))[0].o_errcode,
+                        message: JSON.parse(JSON.stringify(rows[0]))[0].o_errdesc, 
+                        result:""
+                    });
+                        
+        
+
+                }
+            
+            
+        } 
+    } 
+    catch({error})
+    {
+        logger.error(error);
+    }
+    });  
+});
+
+
 router.post('/getusers', function(req, res, next) {  
     Admin.getAllUsers(req.body, function(err,rows) {  
 
