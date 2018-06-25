@@ -477,14 +477,7 @@ router.post('/sendemail', function(req, res, next) {
     }  
 });
 
-var smtpTransport = nodemailer.createTransport({  
-    service: "gmail",  
-    host: "smtp.gmail.com",  
-    auth: {  
-        user: "pravin.@gmail.com",  
-        pass: ""  
-    }  
-});  
+ 
  
   
 router.get('/getroles', function(req, res, next) {  
