@@ -338,15 +338,15 @@ router.post('/sendemail', function(req, res, next) {
         //         port: 465,
         //         secure: true, // true for 465, false for other ports
         //         auth: {
-        //             user: 'pravin.phapale88', // generated ethereal user
-        //             pass: 'sidhivinayak' // generated ethereal password
+        //             user: '', // generated ethereal user
+        //             pass: '' // generated ethereal password
         //         }
         //     });
 
         //     // setup email data with unicode symbols
         //     let mailOptions = {
-        //         from: 'pravin.phapale88@gmail.com', // sender address
-        //         to: 'pravin.phapale88@gmail.com', // list of receivers
+        //         from: '', // sender address
+        //         to: '', // list of receivers
         //         subject: 'Hello ✔', // Subject line
         //         text: 'Hello world?', // plain text body
         //         html: '<b>Hello world?</b>' // html body
@@ -386,7 +386,7 @@ router.post('/sendemail', function(req, res, next) {
                     port: 465,
                     secure: true,
                     auth: {
-                        user: 'npnileshpatil1986', // generated ethereal user
+                        user: '', // generated ethereal user
                         pass: '' // generated ethereal password
                     },
                     logger: true,
@@ -396,7 +396,7 @@ router.post('/sendemail', function(req, res, next) {
                     // default message fields
         
                     // sender info
-                    from: 'npnileshpatil1986@gmail.com',
+                    from: '',
                     headers: {
                         'X-Laziness-level': 1000 // just an example header, no need to use this
                     }
@@ -406,7 +406,7 @@ router.post('/sendemail', function(req, res, next) {
             // Message object
             let message = {
                 // Comma separated list of recipients
-                to: 'pravin.phapale88@gmail.com',
+                to: '',
         
                 // Subject of the message
                 subject: 'Nodemailer is unicode friendly ✔',
