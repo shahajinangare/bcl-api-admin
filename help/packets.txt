@@ -1,0 +1,301 @@
+http://localhost:7000/admin/registration
+request
+=======
+{
+	"name": "tes122",
+	"emailid": "pp1333@gmail.com",
+	"mobileno": "1234567890",
+	"roleid": "1",
+	"bussinesscode": "1",
+    "pass":"aaaa",
+	"latlong": "123",
+	"macaddress": "123",
+	"browser": "ie",
+	"os": "123",
+	"source": "123",
+	"createdby": "1",
+	"createdip": "1.1.1.1" 
+}
+
+output
+================
+Fail:
+{
+    "code": -100,
+    "message": "User already exists",
+    "result": ""
+}
+Success:    
+{
+    "code": 200,
+    "message": "Success",
+    "result": [
+        {
+            "userid": 1,
+            "NAME": "Nilesh",
+            "emailid": "nileslh.patil@bajalcapital.com",
+            "mobileno": "7208822875",
+            "rolename": "Admin",
+            "bussinesscode": "34567",
+            "userexpirydate": "2018-06-15T09:30:16.000Z",
+            "lastlogindate": "2018-06-15T09:30:16.000Z",
+            "lastpwdchangedate": "2018-06-15T09:30:17.000Z",
+            "lockstatus": "N"
+        },
+        {
+            "userid": 2,
+            "NAME": "Pravin",
+            "emailid": "pravin.phapale@bajajcapital.com",
+            "mobileno": "7208822875",
+            "rolename": "Admin",
+            "bussinesscode": null,
+            "userexpirydate": null,
+            "lastlogindate": null,
+            "lastpwdchangedate": null,
+            "lockstatus": "N"
+        },
+        {
+            "userid": 3,
+            "NAME": "pravin",
+            "emailid": "pp@gmail.com",
+            "mobileno": "9870117722",
+            "rolename": "Admin",
+            "bussinesscode": "1",
+            "userexpirydate": null,
+            "lastlogindate": null,
+            "lastpwdchangedate": null,
+            "lockstatus": "N"
+        },
+        {
+            "userid": 7,
+            "NAME": "pravin",
+            "emailid": "pp1@gmail.com",
+            "mobileno": "9870117722",
+            "rolename": "Admin",
+            "bussinesscode": "1",
+            "userexpirydate": null,
+            "lastlogindate": null,
+            "lastpwdchangedate": null,
+            "lockstatus": "N"
+        },
+        {
+            "userid": 8,
+            "NAME": "tes",
+            "emailid": "test@g.com",
+            "mobileno": "1234567890",
+            "rolename": "Admin",
+            "bussinesscode": "1",
+            "userexpirydate": null,
+            "lastlogindate": null,
+            "lastpwdchangedate": null,
+            "lockstatus": "N"
+        },
+        {
+            "userid": 11,
+            "NAME": "tes1",
+            "emailid": "test1@g.com",
+            "mobileno": "1234567890",
+            "rolename": "Admin",
+            "bussinesscode": "1",
+            "userexpirydate": null,
+            "lastlogindate": null,
+            "lastpwdchangedate": null,
+            "lockstatus": "N"
+        },
+        {
+            "userid": 12,
+            "NAME": "pp33",
+            "emailid": "pp1333@gmail.com",
+            "mobileno": "9876543211",
+            "rolename": "Admin",
+            "bussinesscode": "12",
+            "userexpirydate": null,
+            "lastlogindate": null,
+            "lastpwdchangedate": null,
+            "lockstatus": "N"
+        }
+    ]
+}
+
+
+
+
+===========================Get All Users=====
+Input : 
+{
+  "i_emailid": "nileslh.patil@bajalcapital.com"
+}
+Output : 
+[
+    {
+        "userid": 1,
+        "NAME": "Nilesh",
+        "emailid": "nileslh.patil@bajalcapital.com",
+        "mobileno": "7208822875",
+        "rolename": "Admin",
+        "bussinesscode": "34567",
+        "userexpirydate": null,
+        "lastlogindate": null,
+        "lastpwdchangedate": null,
+        "lockstatus": "N"
+    }
+]
+
+{
+    "code": "ER_SP_DOES_NOT_EXIST",
+    "errno": 1305,
+    "sqlMessage": "PROCEDURE bcl_online.proc_adm_registration1 does not exist",
+    "sqlState": "42000",
+    "index": 0,
+    "sql": "CALL proc_adm_registration1('tes122','pp133223@gmail.com','1234567890','1','1','123','123','ie','123','123','1','1.1.1.1',@o_errcode,@o_errdesc);"
+}
+
+Change password:
+{
+	"userid": "1",
+	"oldpwd": "12",
+	"newpwd": "1234",
+	"latlong": "123",
+	"macaddress": "123",
+	"browser": "ie",
+	"os": "123",
+	"source": "123",
+	"modifiedip": "1.1.1.1" 
+}
+out:
+{
+    "code": -100,
+    "message": "Invalid password",
+    "result": ""
+}
+
+Success:
+{
+    "code": 200,
+    "message": "Success",
+    "result": ""
+}
+
+
+==================Login================
+URL: http://localhost:7000/admin/login
+
+Input:
+
+{
+	"emailid":"nileslh.patil@bajalcapital.com",
+	"password":"1234",
+	"latlong":"111.22",
+	"macaddress":"mac",
+	"browser":"ie",
+	"os":"window",
+	"source":"web",
+	"createdby":"1",
+	"createdip":"192.12.22.123"
+
+}
+
+Output:
+
+{
+    "code": 200,
+    "message": "Login Successfully !!!",
+    "result": [
+        {
+            "v_userid": 1,
+            "name": "Nilesh",
+            "emailid": "nileslh.patil@bajalcapital.com",
+            "mobileno": "7208822875"
+        }
+    ]
+}
+
+OR 
+
+{
+    "code": -1,
+    "message": "Invalid user name and password.",
+    "result": ""
+}
+
+=================To Unlock User=====================
+URL : http://localhost:7000/admin/userunlock
+
+Input:
+
+{
+	"emailid":"nileslh.patil@bajalcapital.com",
+	"latlong":"111.22",
+	"macaddress":"mac",
+	"browser":"ie",
+	"os":"window",
+	"source":"web",
+	"createdby":"1",
+	"createdip":"192.12.22.123"
+
+}
+
+Output:
+
+{
+    "code": 200,
+    "message": "Unlock Successfully !!!",
+    "result": ""
+}
+
+=============Update UserInfo==============
+
+URL :http://localhost:7000/admin/updateuser
+
+Input:
+
+{
+	"userid":"1",
+	"username":"Nileshs",
+	"emailid":"nileslh.patil@bajalcapital.com",
+	"mobileno":"7208822877",
+	"roleid":"1",
+	"bussinesscode":"nileslh.patil@bajalcapital.com",
+	"latlong":"111.22",
+	"macaddress":"mac",
+	"browser":"ie",
+	"os":"window",
+	"source":"web",
+	"createdby":"1",
+	"createdip":"192.12.22.123"
+
+}
+
+Output:
+
+{
+    "code": 200,
+    "message": "Update Successfully !!!",
+    "result": ""
+}
+
+=============Get Roles===============
+Method :  Get
+URL : http://localhost:7000/admin/getroles
+
+Output
+
+{
+    "code": 200,
+    "message": "Success",
+    "result": [
+        {
+            "roleid": 1,
+            "rolename": "Admin"
+        },
+        {
+            "roleid": 2,
+            "rolename": "Reportuser"
+        },
+        {
+            "roleid": 3,
+            "rolename": "Account"
+        }
+    ]
+}
+
