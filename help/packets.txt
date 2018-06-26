@@ -300,3 +300,22 @@ Output
     ]
 }
 
+
+Send mail
+http://localhost:7000/admin/sendemail
+request:
+{
+	"toemailid":"npnileshpatil1986@gmail.com",
+	"ccemailid":"pravin.phapale88@gmail.com",
+	"subject":"Good morning",
+	"message":"Hii",
+	"messagehtml":"Hi good morning"
+}
+
+response:
+{
+    "code": "200",
+    "message": "success",
+    "result": ""
+}
+
