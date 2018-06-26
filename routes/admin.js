@@ -327,54 +327,15 @@ router.post('/getmenubyrole', function(req, res, next) {
 router.post('/sendemail', function(req, res, next) {  
     try
     {
-        console.log('Email start');
-        
-        // Generate test SMTP service account from ethereal.email
-        // Only needed if you don't have a real mail account for testing
-        // nodemailer.createTestAccount((err, account) => {
-        //     // create reusable transporter object using the default SMTP transport
-        //     let transporter = nodemailer.createTransport({
-        //         host: 'smtp.ethereal.email',
-        //         port: 465,
-        //         secure: true, // true for 465, false for other ports
-        //         auth: {
-        //             user: '', // generated ethereal user
-        //             pass: '' // generated ethereal password
-        //         }
-        //     });
-
-        //     // setup email data with unicode symbols
-        //     let mailOptions = {
-        //         from: '', // sender address
-        //         to: '', // list of receivers
-        //         subject: 'Hello ✔', // Subject line
-        //         text: 'Hello world?', // plain text body
-        //         html: '<b>Hello world?</b>' // html body
-        //     };
-
-        //     // send mail with defined transport object
-        //     transporter.sendMail(mailOptions, (error, info) => {
-        //         if (error) {
-        //             return console.log(error);
-        //         }
-        //         console.log('Message sent: %s', info.messageId);
-        //         // Preview only available when sending through an Ethereal account
-        //         console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
-
-        //         // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
-        //         // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
-        //     });
-        // });
-
-
         nodemailer.createTestAccount((err, account) => {
             if (err) {
                 console.error('Failed to create a testing account');
                 console.error(err);
                 return process.exit(1);
             }
-        
-            console.log('Credentials obtained, sending message...');
+            
+            console.log(req.body);
+            console.log(req.body.toemailid + 'Credentials obtained, sending message...');
         
             // NB! Store the account object values somewhere if you want
             // to re-use the same account for future mail deliveries
@@ -406,23 +367,25 @@ router.post('/sendemail', function(req, res, next) {
             // Message object
             let message = {
                 // Comma separated list of recipients
-                to: '',
-        
+                to: req.body.toemailid,
+
+                cc:req.body.ccemailid,
                 // Subject of the message
-                subject: 'Nodemailer is unicode friendly ✔',
+                subject: req.body.subject,
         
                 // plaintext body
-                text: 'Hello to myself!',
+                text: req.body.message,
         
                 // HTML body
-                html:
-                    '<p><b>Hello</b> to myself <img src="cid:note@example.com"/></p>' +
-                    '<p>Here\'s a nyan cat for you as an embedded attachment:<br/><img src="cid:nyan@example.com"/></p>',
+
+                html:req.body.messagehtml,
+                    //'<p><b>Hello</b> to myself <img src="cid:note@example.com"/></p>' +
+                    //'<p>Here\'s a nyan cat for you as an embedded attachment:<br/><img src="cid:nyan@example.com"/></p>',
         
                 // An array of attachments
                 attachments: [
                     // String attachment
-                    {
+                   /* {
                         filename: 'notes.txt',
                         content: 'Some notes about this e-mail',
                         contentType: 'text/plain' // optional, would be detected from the filename
@@ -446,7 +409,7 @@ router.post('/sendemail', function(req, res, next) {
                     //     filename: 'nyan cat ✔.gif',
                     //     path: __dirname + '/assets/nyan.gif',
                     //     cid: 'nyan@example.com' // should be as unique as possible
-                    // }
+                    // }*/
                 ]
             };
         
@@ -462,14 +425,16 @@ router.post('/sendemail', function(req, res, next) {
         
                 // only needed when using pooled connections
                 transporter.close();
+
+                res.status(200).send({
+                    code:'200',
+                    message:'success', 
+                    result:''
+                })
             });
         });
 
-        res.status(200).send({
-            code:'200',
-            message:'success', 
-            result:''
-        })
+        
     } 
     catch ({error}) {
         logger.error(error);
