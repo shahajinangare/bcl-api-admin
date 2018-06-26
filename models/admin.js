@@ -61,8 +61,9 @@ var Admin =
     getAllUsers: function (user, callback) {
         try
         {
-        return db.query("CALL proc_adm_getuser(?,@o_errcode,@o_errdesc)",
-            [user.i_emailid],
+        return db.query("CALL proc_adm_getuser(?,?,@o_errcode,@o_errdesc)",
+            [user.i_emailid,
+            user.i_userid],
             callback);
         } catch ({error}) {
             logger.error(error);
@@ -118,6 +119,7 @@ var Admin =
             user.createdby,
             user.createdip],callback);
     },
+
     
 }
 module.exports = Admin;  

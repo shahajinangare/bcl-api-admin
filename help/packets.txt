@@ -123,7 +123,8 @@ Success:
 ===========================Get All Users=====
 Input : 
 {
-  "i_emailid": "nileslh.patil@bajalcapital.com"
+  "i_emailid": "nileslh.patil@bajalcapital.com",
+  "i_userid":"0"
 }
 Output : 
 [
