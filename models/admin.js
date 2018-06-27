@@ -119,7 +119,36 @@ var Admin =
             user.createdby,
             user.createdip],callback);
     },
-
+    generatetoken: function(user,callback) {  
+        
+        return db.query("CALL proc_adm_generatetocken(?,?,?,?,?,?,?,?,?,?,@o_errcode,@o_errdesc)",
+        [
+            user.emailid,
+            user.tockentype,
+            user.tockencode,
+            user.latlong,
+            user.macaddress,
+            user.browser,
+            user.os,
+            user.source,
+            user.createdby,
+            user.createdip],callback);
+    },
+    verifytoken: function(user,callback) {  
+        
+        return db.query("CALL proc_adm_verifytocken(?,?,?,?,?,?,?,?,?,?,@o_errcode,@o_errdesc)",
+        [
+            user.emailid,
+            user.tockentype,
+            user.tockencode,
+            user.latlong,
+            user.macaddress,
+            user.browser,
+            user.os,
+            user.source,
+            user.createdby,
+            user.createdip],callback);
+    }
     
 }
 module.exports = Admin;  

@@ -319,3 +319,58 @@ response:
     "result": ""
 }
 
+http://localhost:7000/admin/generatetoken
+{
+	"emailid":"nilesh.patil@bajajcapital.com",
+	"tockentype":"1",
+	"tockencode":"222aaa",
+	"latlong":"111.22",
+	"macaddress":"mac",
+	"browser":"ie",
+	"os":"window",
+	"source":"web",
+	"createdby":"1",
+	"createdip":"192.12.22.123"
+}
+response:
+{
+    "code": 200,
+    "message": "Success",
+    "result": ""
+}
+
+
+http://localhost:7000/admin/verifytoken
+{
+	"emailid":"",
+	"tockentype":"1",
+	"tockencode":"222aaa",
+	"latlong":"111.22",
+	"macaddress":"mac",
+	"browser":"ie",
+	"os":"window",
+	"source":"web",
+	"createdby":"1",
+	"createdip":"192.12.22.123"
+}
+response:
+{
+    "code": 200,
+    "message": "Success",
+    "result": [
+        {
+            "userid": 1,
+            "NAME": "NileshPP",
+            "emailid": "nilesh.patil@bajajcapital.com",
+            "mobileno": "7208822877",
+            "rolename": "Reportuser",
+            "roleid": 2,
+            "bussinesscode": "KDHg",
+            "userexpirydate": "2018-06-15T09:30:16.000Z",
+            "lastlogindate": "2018-06-15T09:30:16.000Z",
+            "lastpwdchangedate": "2018-06-15T09:30:17.000Z",
+            "lockstatus": "N",
+            "isactive": "Y"
+        }
+    ]
+}

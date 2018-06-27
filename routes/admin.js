@@ -466,6 +466,77 @@ router.get('/getroles', function(req, res, next) {
 
 });
 
+router.post('/generatetoken',function(req,res,next){
+        Admin.generatetoken(req.body, function(err,rows) {  
+        try
+        {
+            if (err) 
+            {   logger.error(err);
+                res.json(err);  
+            } else { 
+            
+                var Code = JSON.parse(JSON.stringify(rows[rows.length-2]))[0].o_errcode;
+            
+                switch(Code)
+                    {
+                        case 200:
+                            res.status(200).send({
+                                code:JSON.parse(JSON.stringify(rows[rows.length-2]))[0].o_errcode,
+                                message:JSON.parse(JSON.stringify(rows[rows.length-2]))[0].o_errdesc, 
+                                result:""
+                            })
+                            break;
+                            default:
+                        res.status(200).send({
+                            code: JSON.parse(JSON.stringify(rows[0]))[0].o_errcode,
+                            message: JSON.parse(JSON.stringify(rows[0]))[0].o_errdesc, 
+                            result:""
+                        });
+                    }
+            } 
+        } 
+        catch({error})
+        {
+            logger.error(error);
+        }
+    });
+});
+
+router.post('/verifytoken',function(req,res,next){
+        Admin.verifytoken(req.body, function(err,rows) {  
+        try
+        {
+            if (err) 
+            {   logger.error(err);
+                res.json(err);  
+            } else { 
+            
+                var Code = JSON.parse(JSON.stringify(rows[rows.length-2]))[0].o_errcode;
+            
+                switch(Code)
+                    {
+                        case 200:
+                            res.status(200).send({
+                                code:JSON.parse(JSON.stringify(rows[rows.length-2]))[0].o_errcode,
+                                message:JSON.parse(JSON.stringify(rows[rows.length-2]))[0].o_errdesc, 
+                                result:rows[0]
+                            })
+                            break;
+                            default:
+                        res.status(200).send({
+                            code: JSON.parse(JSON.stringify(rows[0]))[0].o_errcode,
+                            message: JSON.parse(JSON.stringify(rows[0]))[0].o_errdesc, 
+                            result:""
+                        });
+                    }
+            } 
+        } 
+        catch({error})
+        {
+            logger.error(error);
+        }
+        });
+});
 
 
 
